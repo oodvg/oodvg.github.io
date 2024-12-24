@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year Countdown</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+            color: #ff9900;
+            text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .countdown {
+            font-size: 4rem;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+            letter-spacing: 5px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            animation: pulse 1s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.9;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .fireworks {
+            display: none;
+            font-size: 4rem;
+            margin-top: 40px;
+            color: #ffdf00;
+            animation: explode 1.5s ease-out infinite;
+        }
+
+        @keyframes explode {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.5); opacity: 1; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .glow {
+            color: #ff5e00;
+            text-shadow: 0 0 10px rgba(255, 94, 0, 0.7), 0 0 20px rgba(255, 94, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>New Year Countdown</h1>
+    <div class="countdown" id="countdown">
+        Loading...
+    </div>
+    <div id="fireworks" class="fireworks hidden">
+        🎆🎇 Happy New Year! 🎆🎇
+    </div>
+
+    <script>
+        // Set the date we're counting down to
+        var newYearDate = new Date("Jan 1, 2025 00:00:00").getTime();
+
+        // Update the countdown every 1 second
+        var x = setInterval(function() {
+
+            var now = new Date().getTime();
+            var timeRemaining = newYearDate - now;
+
+            // Calculate time components
+            var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            // Display the countdown
+            document.getElementById("countdown").innerHTML =
+                `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            // If the countdown is over, display the New Year message and fireworks
+            if (timeRemaining < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "Happy New Year!";
+                document.getElementById("fireworks").classList.remove("hidden");
+            }
+        }, 1000);
+    </script>
+
+</body>
+</html>
