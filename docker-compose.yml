@@ -1,0 +1,14 @@
+services:
+  web:
+    build: .
+    container_name: dvgtree
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./dvgtree:/usr/share/nginx/html
+    networks:
+      - webnet
+    restart: always
+
+networks:
+  webnet:
