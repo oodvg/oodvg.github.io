@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ooDVG | Developer & MIWX Founder</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      background: radial-gradient(circle at top, #0f2027, #203a43, #2c5364);
+      overflow-x: hidden;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      z-index: 1000;
+      flex-wrap: wrap;
+    }
+
+    header h1 {
+      font-weight: 700;
+      font-size: 1.5rem;
+      background: linear-gradient(90deg, #00ffff, #00b4ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    #discord-status-text {
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-left: 10px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    nav a {
+      color: #b8d9ff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    nav a:hover {
+      color: #00ffff;
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    /* home */
+    #home {
+      background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1c1f26);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    #home h2 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: linear-gradient(90deg, #00ffff, #00b4ff, #00ffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: pulse 5s infinite;
+    }
+
+    #home p {
+      font-size: 1.2rem;
+      color: #c5d7e7;
+      margin-top: 1rem;
+    }
+
+    @keyframes pulse {
+      0%, 100% { text-shadow: 0 0 20px #00ffff55; }
+      50% { text-shadow: 0 0 40px #00ffff99; }
+    }
+
+    .links {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .links a {
+      padding: 12px 24px;
+      color: #00ffff;
+      border: 2px solid #00ffff;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .links a:hover {
+      background: #00ffff22;
+      transform: translateY(-3px);
+      box-shadow: 0 0 20px #00ffff77;
+    }
+
+    /* About */
+    #about {
+      background: #111a20;
+    }
+
+    #about h2 {
+      font-size: 2.5rem;
+      color: #00ffff;
+      margin-bottom: 1rem;
+    }
+
+    #about p {
+      max-width: 800px;
+      color: #cbd5e1;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    /* Projects */
+    #projects {
+      background: #0d1419;
+    }
+
+    #projects h2 {
+      font-size: 2.5rem;
+      color: #00ffff;
+      margin-bottom: 1.5rem;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      width: 100%;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      border-radius: 16px;
+      padding: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px #00ffff55;
+    }
+
+    .card h3 {
+      color: #00ffff;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      color: #c9d6df;
+      font-size: 0.95rem;
+    }
+
+    /* MIWX Section */
+    #miwx {
+      background: #101820;
+    }
+
+    #miwx h2 {
+      font-size: 2.5rem;
+      color: #00ffff;
+      margin-bottom: 1rem;
+    }
+
+    #miwx p {
+      max-width: 800px;
+      color: #cbd5e1;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    #miwx a {
+      color: #00ffff;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+
+    #miwx a:hover {
+      border-color: #00ffff;
+    }
+
+    footer {
+      background: #0a0e12;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.85rem;
+      color: #647c8a;
+    }
+
+    @media (max-width: 600px) {
+      #home h2 { font-size: 2.5rem; }
+      nav a { margin: 0 8px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ooDVG</h1>
+    <div id="discord-status-text">Status: Checking...</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#miwx">MIWXAlerts</a>
+    </nav>
+  </header>
+
+  <section id="home">
+    <h2>ooDVG</h2>
+    <p>Developer • MIWX Founder • Twitch Creator</p>
+    <div class="links">
+      <a href="https://github.com/oodvg" target="_blank">GitHub</a>
+      <a href="https://github.com/MIWXAlerts" target="_blank">MIWXAlerts GitHub</a>
+      <a href="https://twitch.tv/oodvg" target="_blank">Twitch</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="about-container">
+      <p>
+        I’m <strong>DVG</strong> — a developer and weather enthusiast focused on automation,
+        data systems, and alert infrastructure across the weather community.
+        I specialize in creating efficient, modern solutions that merge meteorology with technology.
+        My goal is to build reliable tools that improve awareness and precision in real time.
+      </p>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-grid">
+      <div class="card" style="grid-column: 1 / -1; text-align: left;">
+        <h3 style="color: #00ffff;">🔓 Open Source Projects</h3>
+      </div>
+      <div class="card">
+        <h3>MIWXAlerts-lite</h3>
+        <p>Lightweight Python tool fetching live Michigan alerts via NWS API.<br><br><strong>Status:</strong> Open Source</p>
+      </div>
+      <div class="card">
+        <h3>SuperCell-wx-rpc</h3>
+        <p>RPC client for Supercell Wx — a simple integration for weather data.<br><br>
+        <a href="https://github.com/dpaulat/supercell-wx" target="_blank" style="color:#00ffff;">View on GitHub</a><br><br>
+        <strong>Status:</strong> Open Source</p>
+      </div>
+      <div class="card" style="grid-column: 1 / -1; text-align: left;">
+        <h3 style="color: #00ffff;">🔒 Closed Source Projects</h3>
+      </div>
+      <div class="card">
+        <h3>MIWXAlerts API</h3>
+        <p>Real-time NWS alert feed using NWWS-OI.<br><br><strong>Status:</strong> Closed Source</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="miwx">
+    <h2>MIWXAlerts</h2>
+    <p>
+      <strong>MIWXAlerts</strong> is a dedicated weather group for Michigan — built to
+      deliver accurate, timely alerts through Discord and X (Twitter).
+      Using automation and radar integration, it ensures
+      every severe weather event receives proper coverage.<br><br>
+      Visit our GitHub: <a href="https://github.com/MIWXAlerts" target="_blank">github.com/MIWXAlerts</a>
+    </p>
+  </section>
+
+  <footer>© 2025 ooDVG. </footer>
+
+  <script>
+    const DISCORD_ID = "655905367422795776";
+    const statusText = document.getElementById("discord-status-text");
+    let currentStatus = "";
+
+    async function updateDiscordStatus() {
+      try {
+        const res = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`);
+        const data = await res.json();
+        if (!data.success) throw new Error("Lanyard failed");
+        const status = data.data.discord_status;
+        if (status === currentStatus) return;
+        currentStatus = status;
+        let color, label;
+        switch (status) {
+          case "online": label = "Online"; color = "#43b581"; break;
+          case "idle": label = "Idle"; color = "#faa61a"; break;
+          case "dnd": label = "Do Not Disturb"; color = "#f04747"; break;
+          default: label = "Offline"; color = "#747f8d";
+        }
+        statusText.innerHTML = `Status: <span style="color:${color}">${label}</span>`;
+      } catch {
+        statusText.innerHTML = `Status: <span style="color:gray;">Unavailable</span>`;
+      }
+    }
+
+    updateDiscordStatus();
+    setInterval(updateDiscordStatus, 15000);
+
+    // Live Background Themes
+    function updateBackgroundTheme() {
+      const hour = new Date().getHours();
+      let background;
+      if (hour >= 6 && hour < 12) background = "radial-gradient(circle at top, #89f7fe, #66a6ff)";
+      else if (hour >= 12 && hour < 18) background = "radial-gradient(circle at top, #a18cd1, #fbc2eb)";
+      else background = "radial-gradient(circle at top, #0f2027, #203a43, #2c5364)";
+      document.body.style.background = background;
+    }
+    updateBackgroundTheme();
+    setInterval(updateBackgroundTheme, 60000 * 10);
+
+    // Spotify “Now Playing”
+    const nowPlayingEl = document.createElement("div");
+    nowPlayingEl.id = "now-playing";
+    nowPlayingEl.style.fontSize = "0.9rem";
+    nowPlayingEl.style.color = "#ccc";
+    nowPlayingEl.style.marginTop = "4px";
+    statusText.insertAdjacentElement("afterend", nowPlayingEl);
+
+    async function updateSpotify() {
+      try {
+        const res = await fetch(`https://api.lanyard.rest/v1/users/${DISCORD_ID}`);
+        const data = await res.json();
+        if (!data.success) throw new Error("No data");
+
+        const discord = data.data;
+        if (discord.listening_to_spotify && discord.spotify) {
+          const song = discord.spotify.song;
+          const artist = discord.spotify.artist;
+          nowPlayingEl.innerHTML = `🎧 Listening to <strong>${song}</strong> by ${artist}`;
+        } else {
+          nowPlayingEl.innerHTML = "";
+        }
+      } catch {
+        nowPlayingEl.innerHTML = "";
+      }
+    }
+
+    updateSpotify();
+    setInterval(updateSpotify, 15000);
+  </script>
+</body>
+</html>
